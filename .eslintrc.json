@@ -31,6 +31,7 @@
         "react/react-in-jsx-scope": ["off"],
         "react/jsx-uses-react": ["off"],
         "react/jsx-props-no-spreading": ["warn"],
-        "react/no-unescaped-entities": ["off"]
+        "react/no-unescaped-entities": ["off"],
+        "jsx-a11y/anchor-is-valid": ["off"]
     }
 }

@@ -1,27 +1,29 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+// import { NotFound, PrivateRoute } from 'components/Common';
+import SignUpPage from "pages/Unauth/SignUp";
+import {
+  Routes,
+  Route,
+  Navigate,
+  BrowserRouter as Router,
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.tsx</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* <Redirect exact from="/" to="/admin/dashboard" /> */}
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="*" element={<Navigate to="/batch" />} />
+
+        {/* <PrivateRoute path="/admin"> */}
+        {/*  <AdminLayout /> */}
+        {/* </PrivateRoute> */}
+
+        {/* <Route> */}
+        {/*  <NotFound /> */}
+        {/* </Route> */}
+      </Routes>
+    </Router>
   );
 }
 
