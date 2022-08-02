@@ -1,5 +1,5 @@
-import { City } from './../models/city';
-import { ListResponse } from './../models/common';
+import { City } from '../models/city';
+import { ListResponse } from '../models/common';
 import axiosClient from './axiosClient';
 
 const cityApi = {

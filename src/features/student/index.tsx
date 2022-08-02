@@ -6,7 +6,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import AddEditPage from './pages/AddEditPage';
 import ListPage from './pages/ListPage';
 
-const StudentFeature = () => {
+function StudentFeature() {
   const match = useRouteMatch();
 
   const dispatch = useAppDispatch();
@@ -33,6 +33,6 @@ const StudentFeature = () => {
       </Switch>
     </Box>
   );
-};
+}
 
 export default StudentFeature;

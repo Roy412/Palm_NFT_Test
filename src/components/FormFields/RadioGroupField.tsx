@@ -22,13 +22,13 @@ interface RadioGroupFieldProps {
   options: RadioOption[];
 }
 
-export const RadioGroupField = ({
+export function RadioGroupField({
   name,
   control,
   label,
   disabled,
   options,
-}: RadioGroupFieldProps) => {
+}: RadioGroupFieldProps) {
   const {
     field: { value, onChange, onBlur },
     fieldState: { invalid, error },
@@ -60,4 +60,4 @@ export const RadioGroupField = ({
       <FormHelperText>{error?.message}</FormHelperText>
     </FormControl>
   );
-};
+}

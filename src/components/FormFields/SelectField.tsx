@@ -3,7 +3,7 @@ import {
   FormHelperText,
   InputLabel,
   MenuItem,
-  Select
+  Select,
 } from '@material-ui/core';
 import React from 'react';
 import { Control, useController } from 'react-hook-form';
@@ -21,13 +21,13 @@ interface SelectFieldProps {
   options: SelectOption[];
 }
 
-export const SelectField = ({
+export function SelectField({
   name,
   control,
   label,
   disabled,
   options,
-}: SelectFieldProps) => {
+}: SelectFieldProps) {
   const {
     field: { value, onChange, onBlur },
     fieldState: { invalid, error },
@@ -65,4 +65,4 @@ export const SelectField = ({
       <FormHelperText>{error?.message}</FormHelperText>
     </FormControl>
   );
-};
+}

@@ -1,4 +1,6 @@
-import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
+import {
+  List, ListItem, ListItemIcon, ListItemText, makeStyles,
+} from '@material-ui/core';
 import { PeopleAlt, Dashboard } from '@material-ui/icons';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -15,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
     color: 'inherit',
     textDecoration: 'none',
 
-    '&.active > div' : {
+    '&.active > div': {
       backgroundColor: theme.palette.action.selected,
-    }
-  }
+    },
+  },
 }));
 
-export const Sidebar = () => {
+export function Sidebar() {
   const classes = useStyles();
 
   return (
@@ -46,5 +48,5 @@ export const Sidebar = () => {
         </NavLink>
       </List>
     </div>
-  )
+  );
 }

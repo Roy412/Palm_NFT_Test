@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddEditPage = () => {
+function AddEditPage() {
   const classes = useStyles();
 
   const history = useHistory();
@@ -32,7 +32,7 @@ const AddEditPage = () => {
         const data: Student = await studentApi.getById(studentId);
         setStudent(data);
       } catch (error) {
-        console.log(`Failed to fetch student details`, error);
+        console.log('Failed to fetch student details', error);
       }
     })();
   }, [studentId]);
@@ -70,7 +70,9 @@ const AddEditPage = () => {
     <Box>
       <Link to="/admin/students">
         <Typography variant="caption" className={classes.back}>
-          <ChevronLeft /> Back to student list
+          <ChevronLeft />
+          {' '}
+          Back to student list
         </Typography>
       </Link>
 
@@ -88,6 +90,6 @@ const AddEditPage = () => {
       )}
     </Box>
   );
-};
+}
 
 export default AddEditPage;

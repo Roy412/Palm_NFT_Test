@@ -1,5 +1,5 @@
-import { ListParams } from './../models/common';
-import { ListResponse, Student } from './../models';
+import { ListParams } from '../models/common';
+import { ListResponse, Student } from '../models';
 import axiosClient from './axiosClient';
 
 const studentApi = {

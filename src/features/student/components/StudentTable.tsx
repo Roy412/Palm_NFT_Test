@@ -37,14 +37,14 @@ export interface StudentTableProps {
   onRemove?: (student: Student) => void;
 }
 
-const StudentTable = ({
+function StudentTable({
   studentList,
   cityMap,
   currentPage,
   pageSize,
   onEdit,
   onRemove,
-}: StudentTableProps) => {
+}: StudentTableProps) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -134,7 +134,11 @@ const StudentTable = ({
         <DialogTitle id="alert-dialog-title">Remove a student ?</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure to remove student name" {selectedStudent?.name}".{' '}
+            Are you sure to remove student name"
+            {' '}
+            {selectedStudent?.name}
+            ".
+            {' '}
             <br />
             This action can't be undo action.
           </DialogContentText>
@@ -154,6 +158,6 @@ const StudentTable = ({
       </Dialog>
     </>
   );
-};
+}
 
 export default StudentTable;

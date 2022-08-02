@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = () => {
+function LoginPage() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const isLogging = useAppSelector((state) => state.auth.logging);
@@ -35,7 +35,7 @@ const LoginPage = () => {
       authActions.login({
         username: '',
         password: '',
-      })
+      }),
     );
   };
 
@@ -53,13 +53,14 @@ const LoginPage = () => {
             color="primary"
             onClick={handleLoginClick}
           >
-            {isLogging && <CircularProgress size={20} color="secondary" />}{' '}
+            {isLogging && <CircularProgress size={20} color="secondary" />}
+            {' '}
             &nbsp; Fake Login
           </Button>
         </Box>
       </Paper>
     </div>
   );
-};
+}
 
 export default LoginPage;

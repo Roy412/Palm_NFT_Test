@@ -19,12 +19,12 @@ interface StudentFiltersProps {
   onSearchChange?: (newFilter: ListParams) => void;
 }
 
-const StudentFilters = ({
+function StudentFilters({
   filter,
   cityList,
   onChange,
   onSearchChange,
-}: StudentFiltersProps) => {
+}: StudentFiltersProps) {
   const searchRef = useRef<HTMLInputElement>();
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +40,7 @@ const StudentFilters = ({
   };
 
   const handleCityChange = (
-    e: ChangeEvent<{ name?: string; value: unknown }>
+    e: ChangeEvent<{ name?: string; value: unknown }>,
   ) => {
     if (!onChange) return;
 
@@ -53,11 +53,11 @@ const StudentFilters = ({
   };
 
   const handleSortChange = (
-    e: ChangeEvent<{ name?: string; value: unknown }>
+    e: ChangeEvent<{ name?: string; value: unknown }>,
   ) => {
     if (!onChange) return;
 
-    const value = e.target.value;
+    const { value } = e.target;
     const [_sort, _order] = (value as string).split('.');
 
     const newFilter: ListParams = {
@@ -161,6 +161,6 @@ const StudentFilters = ({
       </Grid>
     </Box>
   );
-};
+}
 
 export default StudentFilters;

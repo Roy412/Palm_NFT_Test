@@ -6,20 +6,20 @@ import { AdminLayout } from './components/Layout';
 
 function App() {
   return (
-      <Switch>
-        <Redirect exact from="/" to="/admin/dashboard" />
-        <Route path="/login">
-          <LoginPage />
-        </Route>
+    <Switch>
+      <Redirect exact from="/" to="/admin/dashboard" />
+      <Route path="/login">
+        <LoginPage />
+      </Route>
 
-        <PrivateRoute path="/admin">
-          <AdminLayout />
-        </PrivateRoute>
+      <PrivateRoute path="/admin">
+        <AdminLayout />
+      </PrivateRoute>
 
-        <Route>
-          <NotFound />
-        </Route>
-      </Switch>
+      <Route>
+        <NotFound />
+      </Route>
+    </Switch>
   );
 }
 

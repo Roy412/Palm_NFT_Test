@@ -3,35 +3,35 @@ import { Header, Sidebar } from 'components/Common';
 import React, { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-const Dashboard = lazy(() => import('./../../features/dashboard'));
+const Dashboard = lazy(() => import('../../features/dashboard'));
 const StudentFeature = lazy(() => import('../../features/student'));
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'grid',
     gridTemplateRows: 'auto 1fr',
     gridTemplateColumns: '240px 1fr',
-    gridTemplateAreas: `"header header" "sidebar main"`,
+    gridTemplateAreas: '"header header" "sidebar main"',
 
     minHeight: '100vh',
   },
 
   header: {
-    gridArea: "header",
-    borderBottom: `1px solid ${theme.palette.divider}`
+    gridArea: 'header',
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   sidebar: {
-    gridArea: "sidebar",
-    borderRight: `1px solid ${theme.palette.divider}`
+    gridArea: 'sidebar',
+    borderRight: `1px solid ${theme.palette.divider}`,
   },
   main: {
-    gridArea: "main",
+    gridArea: 'main',
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(2, 3)
-  }
-}))
+    padding: theme.spacing(2, 3),
+  },
+}));
 
-export const AdminLayout = () => {
+export function AdminLayout() {
   const classes = useStyles();
 
   return (
@@ -53,5 +53,5 @@ export const AdminLayout = () => {
         </Switch>
       </Box>
     </Box>
-  )
+  );
 }

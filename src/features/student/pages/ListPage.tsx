@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListPage = () => {
+function ListPage() {
   const classes = useStyles();
 
   const match = useRouteMatch();
@@ -70,7 +70,7 @@ const ListPage = () => {
       studentActions.setFilter({
         ...filter,
         _page: page,
-      })
+      }),
     );
   };
 
@@ -148,6 +148,6 @@ const ListPage = () => {
       </Box>
     </Box>
   );
-};
+}
 
 export default ListPage;

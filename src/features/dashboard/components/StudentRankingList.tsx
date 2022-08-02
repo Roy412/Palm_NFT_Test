@@ -18,7 +18,7 @@ interface StudentRankingListProps {
   studentList: Student[];
 }
 
-const StudentRankingList = ({ studentList }: StudentRankingListProps) => {
+function StudentRankingList({ studentList }: StudentRankingListProps) {
   const classes = useStyles();
 
   return (
@@ -44,6 +44,6 @@ const StudentRankingList = ({ studentList }: StudentRankingListProps) => {
       </Table>
     </TableContainer>
   );
-};
+}
 
 export default StudentRankingList;

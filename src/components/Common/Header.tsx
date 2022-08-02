@@ -1,5 +1,7 @@
-import { AppBar, Button, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import { useAppDispatch, } from 'app/hooks';
+import {
+  AppBar, Button, makeStyles, Toolbar, Typography,
+} from '@material-ui/core';
+import { useAppDispatch } from 'app/hooks';
 import { authActions } from 'features/auth/authSlice';
 import React from 'react';
 
@@ -16,14 +18,14 @@ interface HeaderProps {
 
 }
 
-export const Header = (props: HeaderProps) => {
+export function Header(props: HeaderProps) {
   const classes = useStyles();
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const handleLogoutClick = () => {
-    dispatch(authActions.logout())
-  }
+    dispatch(authActions.logout());
+  };
 
   return (
     <div className={classes.root}>
@@ -36,5 +38,5 @@ export const Header = (props: HeaderProps) => {
         </Toolbar>
       </AppBar>
     </div>
-  )
+  );
 }

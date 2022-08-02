@@ -1,8 +1,9 @@
-import { delay, put } from 'redux-saga/effects';
+import {
+  delay, put, call, fork, take,
+} from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { call, fork, take } from 'redux-saga/effects';
-import { LoginPayload, authActions } from './authSlice';
 import { push } from 'connected-react-router';
+import { LoginPayload, authActions } from './authSlice';
 
 function* handleLogin(payload: LoginPayload) {
   try {
@@ -13,7 +14,7 @@ function* handleLogin(payload: LoginPayload) {
         // Dispatch action
         id: 1,
         name: 'Zendy',
-      })
+      }),
     );
 
     // Redirect to Admin page
@@ -37,7 +38,7 @@ function* watchLoginFlow() {
 
     if (!isLoggedIn) {
       const action: PayloadAction<LoginPayload> = yield take(
-        authActions.login.type
+        authActions.login.type,
       );
       yield fork(handleLogin, action.payload); // Non-blocking
     }

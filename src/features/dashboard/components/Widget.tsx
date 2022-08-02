@@ -1,4 +1,6 @@
-import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
+import {
+  Box, makeStyles, Paper, Typography,
+} from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +15,7 @@ interface WidgetProps {
   children: React.ReactNode;
 }
 
-const Widget = ({ title, children }: WidgetProps) => {
+function Widget({ title, children }: WidgetProps) {
   const classes = useStyles();
 
   return (
@@ -23,6 +25,6 @@ const Widget = ({ title, children }: WidgetProps) => {
       <Box mt={2}>{children}</Box>
     </Paper>
   );
-};
+}
 
 export default Widget;

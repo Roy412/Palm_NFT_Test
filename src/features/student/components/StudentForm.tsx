@@ -18,14 +18,12 @@ interface StudentFormProps {
   onSubmit?: (formValues: Student) => void;
 }
 
-const StudentForm = ({ initialValues, onSubmit }: StudentFormProps) => {
+function StudentForm({ initialValues, onSubmit }: StudentFormProps) {
   const schema = yup.object().shape({
     name: yup
       .string()
       .required('Please enter name.')
-      .test('two-words', 'Please enter at least two words', (value) =>
-        !value ? true : value?.split(' ').filter((x) => !!x).length > 2
-      ),
+      .test('two-words', 'Please enter at least two words', (value) => (!value ? true : value?.split(' ').filter((x) => !!x).length > 2)),
     age: yup
       .number()
       .positive('Please enter a positive number.')
@@ -112,13 +110,14 @@ const StudentForm = ({ initialValues, onSubmit }: StudentFormProps) => {
             color="primary"
             disabled={isSubmitting}
           >
-            {isSubmitting && <CircularProgress size={16} color="secondary" />}{' '}
+            {isSubmitting && <CircularProgress size={16} color="secondary" />}
+            {' '}
             &nbsp;Save
           </Button>
         </Box>
       </form>
     </Box>
   );
-};
+}
 
 export default StudentForm;

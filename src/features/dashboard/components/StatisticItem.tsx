@@ -1,4 +1,6 @@
-import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
+import {
+  Box, makeStyles, Paper, Typography,
+} from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +21,7 @@ interface StatisticItemProps {
   value: string | number;
 }
 
-const StatisticItem = ({ icon, label, value }: StatisticItemProps) => {
+function StatisticItem({ icon, label, value }: StatisticItemProps) {
   const classes = useStyles();
 
   return (
@@ -34,6 +36,6 @@ const StatisticItem = ({ icon, label, value }: StatisticItemProps) => {
       </Box>
     </Paper>
   );
-};
+}
 
 export default StatisticItem;

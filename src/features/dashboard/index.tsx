@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dashboard = () => {
+function Dashboard() {
   const classes = useStyles();
 
   const dispatch = useAppDispatch();
@@ -132,6 +132,6 @@ const Dashboard = () => {
       </Box>
     </Box>
   );
-};
+}
 
 export default Dashboard;

@@ -8,14 +8,16 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-export const InputField = ({
+export function InputField({
   name,
   control,
   label,
   ...inputProps
-}: InputFieldProps) => {
+}: InputFieldProps) {
   const {
-    field: { value, onChange, onBlur, ref },
+    field: {
+      value, onChange, onBlur, ref,
+    },
     fieldState: { invalid, error },
   } = useController({
     name,
@@ -38,4 +40,4 @@ export const InputField = ({
       inputProps={inputProps}
     />
   );
-};
+}

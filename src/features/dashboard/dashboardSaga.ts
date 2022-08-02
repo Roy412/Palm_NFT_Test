@@ -1,9 +1,11 @@
-import { ListResponse } from './../../models/common';
-import { dashboardActions, RankingByCity } from './dashboardSlice';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import {
+  all, call, put, takeLatest,
+} from 'redux-saga/effects';
 import studentApi from 'api/studentApi';
 import { City, Student } from 'models';
 import cityApi from 'api/cityApi';
+import { dashboardActions, RankingByCity } from './dashboardSlice';
+import { ListResponse } from '../../models/common';
 
 function* fetchStatistics() {
   // Run at the same time, if all Effect Creators inside all are blocking then all will be blocking and vice versa
@@ -23,7 +25,7 @@ function* fetchStatistics() {
       femaleCount,
       highMarkCount,
       lowMarkCount,
-    })
+    }),
   );
 }
 
@@ -54,22 +56,20 @@ function* fetchRankingCityList() {
   const { data: cityList }: ListResponse<City> = yield call(cityApi.getAll);
 
   // Fetch ranking per city
-  const callList = cityList.map((x) =>
-    call(studentApi.getAll, {
-      _page: 1,
-      _limit: 5,
-      _sort: 'mark',
-      _order: 'desc',
-      city: x.code,
-    })
-  );
+  const callList = cityList.map((x) => call(studentApi.getAll, {
+    _page: 1,
+    _limit: 5,
+    _sort: 'mark',
+    _order: 'desc',
+    city: x.code,
+  }));
   const responseList: Array<ListResponse<Student>> = yield all(callList);
   const rankingByCityList: Array<RankingByCity> = responseList.map(
     (x, idx) => ({
       cityId: cityList[idx].code,
       cityName: cityList[idx].name,
       rankingList: x.data,
-    })
+    }),
   );
 
   // Update state
@@ -87,7 +87,7 @@ function* fetchDashboardData() {
 
     yield put(dashboardActions.fetchDataSuccess());
   } catch (error) {
-    console.log(`Failed to fetch dashboard data`, error);
+    console.log('Failed to fetch dashboard data', error);
     yield put(dashboardActions.fetchDataFailed());
   }
 }
