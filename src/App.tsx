@@ -6,7 +6,6 @@ import { AdminLayout } from './components/Layout';
 
 function App() {
   return (
-    <>
       <Switch>
         <Redirect exact from="/" to="/admin/dashboard" />
         <Route path="/login">
@@ -21,7 +20,6 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
-    </>
   );
 }
 

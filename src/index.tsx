@@ -1,5 +1,5 @@
 // import { BrowserRouter } from 'react-router-dom';
-import { CircularProgress, CssBaseline } from '@material-ui/core';
+import CircularProgress from '@mui/material/CircularProgress';
 import { ConnectedRouter } from 'connected-react-router';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { history } from 'utils';
+import CssBaseline from '@mui/material/CssBaseline'
 import App from './App';
 import { store } from './app/store';
 import './index.css';
