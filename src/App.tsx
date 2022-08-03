@@ -15,7 +15,7 @@ function App() {
         {/* <Redirect exact from="/" to="/admin/dashboard" /> */}
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
-        <Route path="*" element={<Navigate to="/batch" />} />
+        <Route path="*" element={<Navigate to="/login" />} />
 
         {/* <PrivateRoute path="/admin"> */}
         {/*  <AdminLayout /> */}
