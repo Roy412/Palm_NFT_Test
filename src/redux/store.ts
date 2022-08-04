@@ -1,20 +1,18 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import { PersistConfig } from "redux-persist/es/types";
-import profileReducer from "./profile";
-import usersReducer from "./users";
-import { IProfileController } from "./profile/types";
+import { IWalletsController } from "./wallets/types";
 import { IUsersController } from "./users/types";
-
-const reducers = combineReducers({
-  profile: profileReducer,
-  users: usersReducer,
-});
+import reducers from "./reducer";
+import { IBalancesController } from "./balances/types";
+import { ITransactionsController } from "./transactions/types";
 
 export interface IStoreController {
-  profile: IProfileController;
   users: IUsersController;
+  wallets: IWalletsController;
+  balances: IBalancesController;
+  transactions: ITransactionsController;
 }
 
 const persistConfig: PersistConfig<IStoreController> = {
