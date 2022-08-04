@@ -1,11 +1,12 @@
 import AppBar from "@mui/material/AppBar";
 import { Box } from "components";
-import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Container } from "@mui/material";
 import useLayout from "./useLayout";
+import { Wrapper } from "./styles";
 
 export interface ILayout {
   title: string;
@@ -22,7 +23,7 @@ const Layout = ({ children, title }: ILayout) => {
   const { handleLogout } = useLayout();
 
   return (
-    <Box>
+    <Wrapper>
       <AppBar
         position="absolute"
         color="default"
@@ -56,7 +57,7 @@ const Layout = ({ children, title }: ILayout) => {
           {children}
         </Paper>
       </Container>
-    </Box>
+    </Wrapper>
   );
 };
 

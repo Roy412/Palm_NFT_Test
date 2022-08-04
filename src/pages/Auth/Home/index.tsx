@@ -1,6 +1,4 @@
-import { Container } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import { MoneyOutlined } from "@mui/icons-material";
+import { Container, Typography } from "@mui/material";
 import { Box } from "../../../components";
 import useHome from "./useHome";
 import Layout from "../../Layout";
@@ -16,12 +14,7 @@ const Home = () => {
     <Layout title={`Hi ${activeUser.firstName}!`}>
       <Container component="main" maxWidth="xs">
         <Box mt={8} alignItems="center">
-          <Box flexDirection="row" alignItems="center">
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <MoneyOutlined />
-            </Avatar>
-            {userBalance}
-          </Box>
+          <Typography variant="h6">User Balance: ${userBalance}</Typography>
         </Box>
       </Container>
     </Layout>
