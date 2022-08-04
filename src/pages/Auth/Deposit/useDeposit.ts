@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { HOME_URL } from "../../../utils/constants";
 import { updateBalance } from "../../../redux/balances";
 import { useUserWallets } from "../../../utils/hooks";
 import { RootState } from "../../../redux/store";
+import { addTransaction } from "../../../redux/transactions";
+import { TransactionType } from "../../../redux/transactions/types";
 
 /**
  * Home Page Logic
@@ -30,6 +32,8 @@ const useHome = () => {
 
   const handleDeposit = () => {
     setLoading(true);
+
+    // validation
     if (!amount || parseInt(amount, 10) <= 0) {
       setError("Please input amount greater than 0");
       setLoading(false);
@@ -37,12 +41,27 @@ const useHome = () => {
     }
 
     setTimeout(() => {
-      dispatch(
-        updateBalance({
-          walletId: userWallets.activeWalletId,
-          balance: userBalance + parseInt(amount, 10),
-        }),
-      );
+      batch(() => {
+        // update balance
+        dispatch(
+          updateBalance({
+            walletId: userWallets.activeWalletId,
+            balance: userBalance + parseInt(amount, 10),
+          }),
+        );
+        // add the transaction
+        dispatch(
+          addTransaction({
+            email: userWallets.activeWalletId,
+            transaction: {
+              type: TransactionType.DEPOSIT,
+              to: userWallets.activeWalletId,
+              amount: parseInt(amount, 10),
+              createdAt: Date(),
+            },
+          }),
+        );
+      });
       navigate(HOME_URL);
     }, 2000);
   };
