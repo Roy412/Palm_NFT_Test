@@ -17,8 +17,9 @@ const Deposit = () => {
       <Container component="main" maxWidth="xs">
         <TextField
           fullWidth
+          sx={{ mt: 3, mb: 1 }}
           type="number"
-          label="Amount"
+          label="Amount($)"
           autoFocus
           value={amount}
           onChange={handleChangeAmount}

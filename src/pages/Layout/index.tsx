@@ -11,16 +11,18 @@ import { Wrapper } from "./styles";
 export interface ILayout {
   title: string;
   children: React.ReactNode;
+  hasBack?: boolean;
 }
 
 /**
  * Layout Container
  * @param children
  * @param title
+ * @param hasBack
  * @constructor
  */
-const Layout = ({ children, title }: ILayout) => {
-  const { handleLogout } = useLayout();
+const Layout = ({ children, title, hasBack = true }: ILayout) => {
+  const { handleLogout, handleBack } = useLayout();
 
   return (
     <Wrapper>
@@ -40,6 +42,13 @@ const Layout = ({ children, title }: ILayout) => {
             justifyContent="space-between"
             width="100%"
           >
+            {hasBack ? (
+              <Button variant="text" onClick={handleBack}>
+                Back
+              </Button>
+            ) : (
+              ""
+            )}
             <Typography variant="h6" color="inherit" noWrap>
               {title}
             </Typography>

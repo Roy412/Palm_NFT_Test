@@ -12,7 +12,7 @@ const Home = () => {
   const { activeUser, userBalance, handleDeposit } = useHome();
 
   return (
-    <Layout title={`Hi ${activeUser.firstName}!`}>
+    <Layout title={`Hi ${activeUser.firstName}!`} hasBack={false}>
       <Container component="main" maxWidth="xs">
         <Box mt={1} alignItems="center">
           <Typography variant="h6">User Balance: ${userBalance}</Typography>

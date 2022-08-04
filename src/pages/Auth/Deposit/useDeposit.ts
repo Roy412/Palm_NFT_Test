@@ -12,7 +12,7 @@ import { RootState } from "../../../redux/store";
 const useHome = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [amount, setAmount] = useState("0");
+  const [amount, setAmount] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,11 +25,12 @@ const useHome = () => {
 
   const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
+    setError("");
   };
 
   const handleDeposit = () => {
     setLoading(true);
-    if (parseInt(amount, 10) === 0) {
+    if (!amount || parseInt(amount, 10) <= 0) {
       setError("Please input amount greater than 0");
       setLoading(false);
       return;

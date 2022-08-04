@@ -11,7 +11,7 @@ export interface IButton extends ButtonProps {
  * @param children
  * @constructor
  */
-const Button = ({ loading, children }: IButton) => {
+const Button = ({ loading, children, ...props }: IButton) => {
   return (
     <MUIButton
       type="submit"
@@ -19,6 +19,7 @@ const Button = ({ loading, children }: IButton) => {
       variant="contained"
       sx={{ mt: 3, mb: 2 }}
       disabled={loading}
+      {...props}
     >
       {loading && <CircularProgress size={18} />}
       &nbsp;&nbsp;&nbsp;{children}
