@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { CircularProgress } from "@mui/material";
 import useSignUp from "./useSignUp";
+import { LOGIN_URL } from "../../../utils/constants";
 
 /**
  * SIGN UP SCREEN
@@ -97,7 +98,7 @@ const SignUp = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link href={LOGIN_URL} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

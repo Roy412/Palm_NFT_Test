@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { CircularProgress } from "@mui/material";
 import useLogin from "./useLogin";
+import { SIGNUP_URL } from "../../../utils/constants";
 
 /**
  * Sign In Screen
@@ -88,7 +89,7 @@ const SignIn = () => {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="/signup" variant="body2">
+                  <Link href={SIGNUP_URL} variant="body2">
                     Don't have an account? Sign Up
                   </Link>
                 </Grid>
