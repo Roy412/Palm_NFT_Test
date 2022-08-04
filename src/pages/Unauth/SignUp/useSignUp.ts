@@ -25,7 +25,7 @@ const useSignUp = () => {
     password: "",
   });
   const dispatch = useDispatch();
-  const users = useSelector((state: RootState) => state.users);
+  const users = useSelector((state: RootState) => state.users.users);
 
   const [errors, setErrors] = useState<IProfile>({});
   const [submitting, setSubmitting] = useState(false);

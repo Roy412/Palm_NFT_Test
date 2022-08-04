@@ -3,7 +3,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { IUsersController } from "./types";
 import type { IProfile } from "../../pages/Unauth/SignUp/useSignUp";
 
-export const initialState: IUsersController = {};
+export const initialState: IUsersController = {
+  activeUserEmail: "",
+  users: {},
+};
 
 const usersSlice = createSlice({
   name: "users",
@@ -13,7 +16,8 @@ const usersSlice = createSlice({
       const { email } = action.payload;
       return {
         ...state,
-        [email || ""]: action.payload,
+        activeUserEmail: email || "",
+        users: { ...state.users, [email || ""]: action.payload },
       };
     },
   },

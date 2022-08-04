@@ -1,32 +1,20 @@
-// import { NotFound, PrivateRoute } from 'components/Common';
-import SignUpPage from "pages/Unauth/SignUp";
-import LogInPage from "pages/Unauth/LogIn";
-import {
-  Routes,
-  Route,
-  Navigate,
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import UnAuthRouter from "./routers/UnAuthRouter";
+import AuthRouter from "./routers/AuthRouter";
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* <Redirect exact from="/" to="/admin/dashboard" /> */}
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<LogInPage />} />
-        <Route path="*" element={<Navigate to="/login" />} />
+/**
+ * App Component
+ * @constructor
+ */
+const App = () => {
+  const activeUserEmail = useSelector((state: RootState) => {
+    console.log("hello", state);
+    return state.users.activeUserEmail;
+  });
 
-        {/* <PrivateRoute path="/admin"> */}
-        {/*  <AdminLayout /> */}
-        {/* </PrivateRoute> */}
-
-        {/* <Route> */}
-        {/*  <NotFound /> */}
-        {/* </Route> */}
-      </Routes>
-    </Router>
-  );
-}
+  return <Router>{activeUserEmail ? <AuthRouter /> : <UnAuthRouter />}</Router>;
+};
 
 export default App;
