@@ -9,14 +9,17 @@ import Layout from "../../Layout";
  * @constructor
  */
 const Home = () => {
-  const { activeUser, userBalance, handleDeposit } = useHome();
+  const { activeUser, userBalance, handleDeposit, handleSend } = useHome();
 
   return (
     <Layout title={`Hi ${activeUser.firstName}!`} hasBack={false}>
       <Container component="main" maxWidth="xs">
         <Box mt={1} alignItems="center">
           <Typography variant="h6">User Balance: ${userBalance}</Typography>
-          <Box flexDirection="row" alignItems="center">
+          <Box flexDirection="row" alignItems="center" mt={2}>
+            <Button variant="contained" onClick={handleSend} sx={{ mr: 3 }}>
+              Send
+            </Button>
             <Button variant="contained" onClick={handleDeposit}>
               Deposit
             </Button>

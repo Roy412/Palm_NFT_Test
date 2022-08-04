@@ -13,15 +13,17 @@ const walletsSlice = createSlice({
       state: IWalletsController,
       action: PayloadAction<{
         email: string;
+        label: string;
       }>,
     ) {
-      const { email } = action.payload;
+      const { email, label } = action.payload;
       const userWallets = { ...state[email] } || {};
       userWallets.wallets = userWallets.wallets || {};
 
       const wallet = {
         walletId: uuidv4(),
-        walletName: `Account${Object.keys(userWallets.wallets).length + 1}`,
+        walletName: label,
+        createdAt: new Date().toString(),
       };
 
       userWallets.activeWalletId = wallet.walletId;

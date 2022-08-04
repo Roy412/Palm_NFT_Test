@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { batch, useDispatch, useSelector } from "react-redux";
 import { HOME_URL } from "../../../utils/constants";
 import { updateBalance } from "../../../redux/balances";
-import { useUserWallets } from "../../../utils/hooks";
+import { useActiveUser, useUserWallets } from "../../../utils/hooks";
 import { RootState } from "../../../redux/store";
 import { addTransaction } from "../../../redux/transactions";
 import { TransactionType } from "../../../redux/transactions/types";
 
 /**
- * Home Page Logic
+ * Deposit Page Logic
  */
-const useHome = () => {
+const useDeposit = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [amount, setAmount] = useState("");
@@ -19,6 +19,7 @@ const useHome = () => {
   const [loading, setLoading] = useState(false);
 
   const userWallets = useUserWallets();
+  const activeUser = useActiveUser();
   const balances = useSelector((state: RootState) => state.balances);
   const userBalance = useMemo(
     () => balances[userWallets.activeWalletId] || 0,
@@ -52,7 +53,7 @@ const useHome = () => {
         // add the transaction
         dispatch(
           addTransaction({
-            email: userWallets.activeWalletId,
+            email: activeUser.email || "",
             transaction: {
               type: TransactionType.DEPOSIT,
               to: userWallets.activeWalletId,
@@ -75,4 +76,4 @@ const useHome = () => {
   };
 };
 
-export default useHome;
+export default useDeposit;

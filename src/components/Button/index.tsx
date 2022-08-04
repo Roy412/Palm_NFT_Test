@@ -2,7 +2,7 @@ import { CircularProgress, Button as MUIButton } from "@mui/material";
 import { ButtonProps } from "@mui/material/Button";
 
 export interface IButton extends ButtonProps {
-  loading: boolean;
+  loading?: boolean;
 }
 
 /**
@@ -11,7 +11,7 @@ export interface IButton extends ButtonProps {
  * @param children
  * @constructor
  */
-const Button = ({ loading, children, ...props }: IButton) => {
+const Button = ({ loading = false, children, ...props }: IButton) => {
   return (
     <MUIButton
       type="submit"

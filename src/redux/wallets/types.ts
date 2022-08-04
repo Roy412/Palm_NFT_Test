@@ -12,4 +12,5 @@ export interface IWallets {
 export interface IWallet {
   walletName: string;
   walletId: string;
+  createdAt: string;
 }
