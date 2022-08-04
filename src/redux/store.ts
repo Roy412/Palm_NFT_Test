@@ -3,13 +3,18 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import { PersistConfig } from "redux-persist/es/types";
 import profileReducer from "./profile";
+import usersReducer from "./users";
+import { IProfileController } from "./profile/types";
+import { IUsersController } from "./users/types";
 
 const reducers = combineReducers({
   profile: profileReducer,
+  users: usersReducer,
 });
 
 export interface IStoreController {
-  profile: any;
+  profile: IProfileController;
+  users: IUsersController;
 }
 
 const persistConfig: PersistConfig<IStoreController> = {
