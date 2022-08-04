@@ -20,7 +20,6 @@ export interface IStoreController {
 const persistConfig: PersistConfig<IStoreController> = {
   key: "primary",
   storage,
-  whitelist: [],
 };
 
 const allReducers = persistReducer(persistConfig, reducers);

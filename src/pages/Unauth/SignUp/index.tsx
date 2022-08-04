@@ -7,6 +7,7 @@ import { Box } from "components";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { CircularProgress } from "@mui/material";
 import useSignUp from "./useSignUp";
 
 /**
@@ -14,7 +15,8 @@ import useSignUp from "./useSignUp";
  * @constructor
  */
 const SignUp = () => {
-  const { profile, handleSubmit, errors, handleChangeField } = useSignUp();
+  const { profile, handleSubmit, errors, handleChangeField, submitting } =
+    useSignUp();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -22,7 +24,7 @@ const SignUp = () => {
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" mb={3}>
           Sign up
         </Typography>
 
@@ -88,12 +90,14 @@ const SignUp = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={submitting}
           >
-            Sign Up
+            {submitting && <CircularProgress size={18} />}
+            &nbsp;&nbsp;&nbsp;Sign Up
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

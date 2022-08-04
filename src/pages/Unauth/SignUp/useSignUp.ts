@@ -28,6 +28,7 @@ const useSignUp = () => {
   const users = useSelector((state: RootState) => state.users);
 
   const [errors, setErrors] = useState<IProfile>({});
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChangeField = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
@@ -56,8 +57,12 @@ const useSignUp = () => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setSubmitting(true);
     event.preventDefault();
+
+    // validation fields
     if (!validateFields()) {
+      setSubmitting(false);
       return;
     }
 
@@ -68,9 +73,14 @@ const useSignUp = () => {
         ...errors,
         email: "User with this Email address already exists.",
       });
+      setSubmitting(false);
       return;
     }
-    dispatch(signUpUser(profile));
+
+    // register user
+    setTimeout(() => {
+      dispatch(signUpUser(profile));
+    }, 2000);
   };
 
   return {
@@ -79,6 +89,7 @@ const useSignUp = () => {
     handleChangeField,
     errors,
     handleSubmit,
+    submitting,
   };
 };
 
