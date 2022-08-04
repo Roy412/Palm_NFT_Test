@@ -20,9 +20,15 @@ const usersSlice = createSlice({
         users: { ...state.users, [email || ""]: action.payload },
       };
     },
+    logOutUser(state: IUsersController) {
+      return {
+        ...state,
+        activeUserEmail: "",
+      };
+    },
   },
 });
 
-export const { signUpUser } = usersSlice.actions;
+export const { signUpUser, logOutUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
