@@ -9,10 +9,9 @@ import AuthRouter from "./routers/AuthRouter";
  * @constructor
  */
 const App = () => {
-  const activeUserEmail = useSelector((state: RootState) => {
-    console.log("hello", state);
-    return state.users.activeUserEmail;
-  });
+  const activeUserEmail = useSelector(
+    (state: RootState) => state.users.activeUserEmail,
+  );
 
   return <Router>{activeUserEmail ? <AuthRouter /> : <UnAuthRouter />}</Router>;
 };

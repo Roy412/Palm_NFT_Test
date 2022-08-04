@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { RootState } from "redux/store";
 import { validateEmail } from "../../../utils/utils";
 import { signUpUser } from "../../../redux/users";
+import { addWallet } from "../../../redux/wallets";
 
 /**
  * Profile Interface
@@ -79,7 +80,10 @@ const useSignUp = () => {
 
     // register user
     setTimeout(() => {
-      dispatch(signUpUser(profile));
+      batch(() => {
+        dispatch(signUpUser(profile));
+        dispatch(addWallet({ email: profile.email })); // add default account wallet
+      });
     }, 2000);
   };
 

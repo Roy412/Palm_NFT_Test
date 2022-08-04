@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
-import { IWallet, IWalletsController } from "./types";
+import { IWalletsController } from "./types";
 
 export const initialState: IWalletsController = {};
 
@@ -12,16 +13,18 @@ const walletsSlice = createSlice({
       state: IWalletsController,
       action: PayloadAction<{
         email: string;
-        wallet: IWallet;
-        active: boolean;
       }>,
     ) {
-      const { email, wallet, active } = action.payload;
+      const { email } = action.payload;
       const userWallets = { ...state[email] } || {};
-      if (active) {
-        userWallets.activeWalletId = wallet.walletId;
-      }
       userWallets.wallets = userWallets.wallets || {};
+
+      const wallet = {
+        walletId: uuidv4(),
+        walletName: `Account${Object.keys(userWallets.wallets).length + 1}`,
+      };
+
+      userWallets.activeWalletId = wallet.walletId;
       userWallets.wallets[wallet.walletId] = wallet;
 
       return {
