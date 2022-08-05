@@ -1,5 +1,6 @@
-import { Container, Typography } from "@mui/material";
+import { Container, MenuItem, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { Box } from "../../../components";
 import useHome from "./useHome";
 import Layout from "../../Layout";
@@ -9,13 +10,36 @@ import Layout from "../../Layout";
  * @constructor
  */
 const Home = () => {
-  const { activeUser, userBalance, handleDeposit, handleSend } = useHome();
+  const {
+    activeUser,
+    accountBalance,
+    handleDeposit,
+    handleSend,
+    accounts,
+    selAccount,
+    handleChangeAccount,
+  } = useHome();
 
   return (
     <Layout title={`Hi ${activeUser.firstName}!`} hasBack={false}>
       <Container component="main" maxWidth="xs">
         <Box mt={1} alignItems="center">
-          <Typography variant="h6">User Balance: ${userBalance}</Typography>
+          <TextField
+            select
+            label="Select Account"
+            value={selAccount}
+            onChange={handleChangeAccount}
+            sx={{ width: 200, alignSelf: "flex-end" }}
+          >
+            {accounts.map(({ label, value }) => (
+              <MenuItem key={value} value={value}>
+                {label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <Typography variant="h6" sx={{ mt: 3 }}>
+            Account Balance: ${accountBalance}
+          </Typography>
           <Box flexDirection="row" alignItems="center" mt={2}>
             <Button variant="contained" onClick={handleSend} sx={{ mr: 3 }}>
               Send

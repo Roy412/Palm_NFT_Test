@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { batch, useDispatch, useSelector } from "react-redux";
 import { HOME_URL } from "../../../utils/constants";
 import { updateBalance } from "../../../redux/balances";
-import { useActiveUser, useUserWallets } from "../../../utils/hooks";
+import {
+  useActiveUser,
+  useUserAccountBalance,
+  useUserAccounts,
+  useUserWallets,
+} from "../../../utils/hooks";
 import { RootState } from "../../../redux/store";
 import { addTransaction } from "../../../redux/transactions";
 import { TransactionType } from "../../../redux/transactions/types";
@@ -34,24 +39,8 @@ const useSend = () => {
     () => (selAccount ? balances[selAccount] || 0 : 0),
     [balances, selAccount],
   );
-
-  const accounts = useMemo(() => {
-    const array = Object.keys(userWallets.wallets).reduce(
-      (result: IWalletAccounts[], key) => {
-        if (key !== userWallets.activeWalletId) {
-          const wallet = userWallets.wallets[key];
-          result.push({
-            label: wallet.walletName,
-            value: wallet.walletId,
-            createdAt: new Date(wallet.createdAt),
-          });
-        }
-        return result;
-      },
-      [],
-    );
-    return array.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
-  }, [userWallets.activeWalletId, userWallets.wallets]);
+  const accounts = useUserAccounts();
+  const accountBalance = useUserAccountBalance();
 
   useEffect(() => {
     setAccountErr(
@@ -84,9 +73,14 @@ const useSend = () => {
       return;
     }
 
-    // validation
     if (!amount || parseInt(amount, 10) <= 0) {
       setError("Please input amount greater than 0");
+      setLoading(false);
+      return;
+    }
+
+    if (parseInt(amount, 10) > accountBalance) {
+      setError(`Not enough balance, you have ${accountBalance}.`);
       setLoading(false);
       return;
     }
@@ -98,6 +92,13 @@ const useSend = () => {
           updateBalance({
             walletId: selAccount || "",
             balance: selWalletBalance + parseInt(amount, 10),
+          }),
+        );
+
+        dispatch(
+          updateBalance({
+            walletId: userWallets.activeWalletId,
+            balance: accountBalance - parseInt(amount, 10),
           }),
         );
         // add the transaction
