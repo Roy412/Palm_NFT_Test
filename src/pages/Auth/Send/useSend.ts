@@ -80,7 +80,7 @@ const useSend = () => {
     }
 
     if (parseInt(amount, 10) > accountBalance) {
-      setError(`Not enough balance, you have ${accountBalance}.`);
+      setError(`Not enough balance, you have $${accountBalance}.`);
       setLoading(false);
       return;
     }
@@ -94,7 +94,6 @@ const useSend = () => {
             balance: selWalletBalance + parseInt(amount, 10),
           }),
         );
-
         dispatch(
           updateBalance({
             walletId: userWallets.activeWalletId,

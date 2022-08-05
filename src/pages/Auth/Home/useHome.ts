@@ -6,7 +6,11 @@ import {
   useUserAccounts,
   useUserWallets,
 } from "../../../utils/hooks";
-import { DEPOSIT_URL, SEND_URL } from "../../../utils/constants";
+import {
+  DEPOSIT_URL,
+  SEND_URL,
+  TRANSACTIONS_URL,
+} from "../../../utils/constants";
 import { updateActiveWallet } from "../../../redux/wallets";
 
 /**
@@ -22,6 +26,9 @@ const useHome = () => {
 
   const handleDeposit = () => {
     navigate(DEPOSIT_URL);
+  };
+  const handleTransactions = () => {
+    navigate(TRANSACTIONS_URL);
   };
   const handleSend = () => {
     navigate(SEND_URL);
@@ -43,6 +50,7 @@ const useHome = () => {
     handleSend,
     accounts,
     handleChangeAccount,
+    handleTransactions,
     selAccount: userWallets.activeWalletId,
   };
 };

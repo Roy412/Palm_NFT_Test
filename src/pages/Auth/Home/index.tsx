@@ -18,6 +18,7 @@ const Home = () => {
     accounts,
     selAccount,
     handleChangeAccount,
+    handleTransactions,
   } = useHome();
 
   return (
@@ -41,11 +42,14 @@ const Home = () => {
             Account Balance: ${accountBalance}
           </Typography>
           <Box flexDirection="row" alignItems="center" mt={2}>
-            <Button variant="contained" onClick={handleSend} sx={{ mr: 3 }}>
+            <Button variant="contained" onClick={handleSend}>
               Send
             </Button>
-            <Button variant="contained" onClick={handleDeposit}>
+            <Button variant="contained" onClick={handleDeposit} sx={{ mx: 3 }}>
               Deposit
+            </Button>
+            <Button variant="contained" onClick={handleTransactions}>
+              Transactions
             </Button>
           </Box>
         </Box>
