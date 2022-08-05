@@ -28,7 +28,7 @@ const AddAccountDlg = ({ open, handleClose }: IAddAccountDlg) => {
   } = useAddAccountDlg(handleClose);
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth>
+    <Dialog open={open} onClose={handleClose} fullWidth keepMounted={false}>
       <DialogTitle>Add Account</DialogTitle>
       <DialogContent>
         <TextField
@@ -38,7 +38,7 @@ const AddAccountDlg = ({ open, handleClose }: IAddAccountDlg) => {
           fullWidth
           value={accountName}
           onChange={handleAccountNameChange}
-          error={!error}
+          error={!!error}
           helperText={error}
         />
       </DialogContent>

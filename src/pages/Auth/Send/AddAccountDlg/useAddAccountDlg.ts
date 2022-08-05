@@ -15,6 +15,7 @@ const useAddAccountDlg = (handleClose: () => void) => {
 
   const handleAccountNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccountName(e.target.value);
+    setError("");
   };
 
   const handleAddAccount = () => {
@@ -30,7 +31,11 @@ const useAddAccountDlg = (handleClose: () => void) => {
     setTimeout(() => {
       // add wallet
       dispatch(
-        addWallet({ email: activeUser.email || "", label: accountName }),
+        addWallet({
+          email: activeUser.email || "",
+          label: accountName,
+          active: false,
+        }),
       );
       handleClose();
     }, 2000);

@@ -36,6 +36,7 @@ const Send = () => {
             onChange={handleChangeAccount}
             error={!!accountError}
             helperText={accountError}
+            sx={{ width: 200 }}
           >
             {accounts.map(({ label, value }) => (
               <MenuItem key={value} value={value}>

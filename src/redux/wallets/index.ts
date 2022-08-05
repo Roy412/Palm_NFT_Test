@@ -14,11 +14,12 @@ const walletsSlice = createSlice({
       action: PayloadAction<{
         email: string;
         label: string;
+        active: boolean;
       }>,
     ) {
-      const { email, label } = action.payload;
+      const { email, label, active } = action.payload;
       const userWallets = { ...state[email] } || {};
-      userWallets.wallets = userWallets.wallets || {};
+      userWallets.wallets = { ...userWallets.wallets } || {};
 
       const wallet = {
         walletId: uuidv4(),
@@ -26,7 +27,9 @@ const walletsSlice = createSlice({
         createdAt: new Date().toString(),
       };
 
-      userWallets.activeWalletId = wallet.walletId;
+      if (active) {
+        userWallets.activeWalletId = wallet.walletId;
+      }
       userWallets.wallets[wallet.walletId] = wallet;
 
       return {

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { batch, useDispatch, useSelector } from "react-redux";
 import { HOME_URL } from "../../../utils/constants";
@@ -13,6 +13,7 @@ export interface IWalletAccounts {
   value: string;
   createdAt: Date;
 }
+
 /**
  * Send Page Logic
  */
@@ -24,6 +25,7 @@ const useSend = () => {
   const [loading, setLoading] = useState(false);
   const [dlgOpen, setDlgOpen] = useState(false);
   const [selAccount, setSelAccount] = useState<string | undefined>();
+  const [accountError, setAccountErr] = useState<string | undefined>();
 
   const activeUser = useActiveUser();
   const userWallets = useUserWallets();
@@ -51,8 +53,10 @@ const useSend = () => {
     return array.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
   }, [userWallets.activeWalletId, userWallets.wallets]);
 
-  const accountError = useMemo(() => {
-    return accounts.length === 0 ? "No enough accounts. Try to add" : "";
+  useEffect(() => {
+    setAccountErr(
+      accounts.length === 0 ? "No enough accounts. Try to add" : "",
+    );
   }, [accounts.length]);
 
   const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +66,7 @@ const useSend = () => {
 
   const handleChangeAccount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelAccount(e.target.value);
+    setAccountErr("");
   };
 
   const handleSend = () => {
@@ -69,6 +74,12 @@ const useSend = () => {
 
     // validation
     if (accountError) {
+      setLoading(false);
+      return;
+    }
+
+    if (!selAccount) {
+      setAccountErr("Please select account to send");
       setLoading(false);
       return;
     }

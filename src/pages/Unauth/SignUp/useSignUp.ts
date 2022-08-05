@@ -82,7 +82,9 @@ const useSignUp = () => {
     setTimeout(() => {
       batch(() => {
         dispatch(signUpUser(profile));
-        dispatch(addWallet({ email: profile.email, label: "Account 1" })); // add default account wallet
+        dispatch(
+          addWallet({ email: profile.email, label: "Account 1", active: true }),
+        ); // add default account wallet
       });
     }, 2000);
   };
